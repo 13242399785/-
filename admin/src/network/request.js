@@ -3,6 +3,7 @@ import Vue from 'vue'
 import router from '../router/index'
 
 import NProgress from 'nprogress'
+// var nowUrl='https://huazai.loca.lt'
 var nowUrl='https://huazai.loca.lt'
 //通用增删改查接口(增加rest字段)
 function GUID_req(config) {

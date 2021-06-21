@@ -32,7 +32,7 @@
  
 <script>
 // 导入网络请求函数
-import { createArticle, getArticle, updateArticle, getArticleList, articleImgUpload } from 'network/admin/article'
+import { createArticle, getArticle, updateArticle, articleImgUpload } from 'network/admin/article'
 import { getCateList } from 'network/admin/category'
 
 //导入富文本编辑器，需要注册组件

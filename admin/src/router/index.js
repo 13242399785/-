@@ -94,6 +94,18 @@ const router = new VueRouter({
   mode: 'hash'
 })
 
+router.onError((error) => {
+  console.error(error)
+  const pattern = /Loading chunk/g
+  // const pattern = /Loading chunk (\d)+ failed/g
+  const isChunkLoadFailed = error.message.match(pattern)
+  const targetPath = router.history.pending.fullPath
+  if (isChunkLoadFailed && error.type === 'missing') {
+    // const targetPath = $router.history.pending.fullPath
+    router.push(targetPath)
+  }
+})
+
 router.beforeEach((to, from, next) => {
 
   if (!to.meta.noRequiredAuth && !sessionStorage.token) return next('/login')

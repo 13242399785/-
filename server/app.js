@@ -5,14 +5,14 @@ const multer = require('multer')
 const fs = require('fs');
 app.set('secret', 'jakezhang168168')
 //设置跨域访问
-app.all('*', function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
-  res.header("X-Powered-By",' 3.2.1');
-  res.header("Content-Type", "application/json;charset=utf-8");
-  next();
-});
+// app.all('*', function(req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Headers", "X-Requested-With");
+//   res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
+//   res.header("X-Powered-By",' 3.2.1');
+//   res.header("Content-Type", "application/json;charset=utf-8");
+//   next();
+// }); 
 //跨域
 app.use(cors())
 //将请求体转为json对象
@@ -40,10 +40,10 @@ let options = {
       title: 'Swagger',
       version: '1.0.0'
     },
-    host: '192.168.5.147:3333',
+    host: 'huazai.loca.lt',
     basePath: '/',
     produces: ['application/json', 'application/xml'],
-    schemes: ['http', 'https'],
+    schemes: ['https'],
     securityDefinitions: {
       JWT: {
         type: 'apiKey',
@@ -69,7 +69,7 @@ require('./routes/web/strategy')(app)
 require('./routes/web/race')(app)
 require('./routes/web/common')(app)
 
-app.get('/listUsers',function(req,res){
+app.get('/',function(req,res){ 
   // res.send({data:'ok'})
   console.log(__dirname)
 	fs.readFile(__dirname+"/uploads/"+'user.json','utf8',function(err,data){
@@ -81,13 +81,11 @@ app.get('/listUsers',function(req,res){
 })
 // 监听服务器其他错误
 app.use((err, req, res, next) => {
-
   if (!err.statusCode) return res.status(500).send({ message: err.message })
 
   res.status(err.statusCode).send({
     message: err.message
   })
-
 })
 
 app.listen(3333, () => {
