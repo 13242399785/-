@@ -12,6 +12,7 @@ module.exports = app => {
   // 监听所有通用接口-----------------------------------------------------------
   app.use('/admin/api/rest/:resource', auth(app), async (req, res, next) => {
     const modelName = require('inflection').classify(req.params.resource)
+    console.log(modelName)
     req.Model = require(`../../models/${modelName}`)
     next()
   }, router)
@@ -49,7 +50,7 @@ module.exports = app => {
 
   }, async (req, res) => {
       console.log(req.Model.modelName)
-    if (req.Model.modelName === 'Category'||req.Model.modelName === 'Catalog') {
+    if (req.Model.modelName === 'Category'||req.Model.modelName === 'Catalog'||req.Model.modelName === 'Detail') {
       const parents = await req.Model.find().where({
         parent: null
       }).lean()
@@ -142,6 +143,7 @@ module.exports = app => {
   // 通过id查找
   router.get('/:id', async (req, res) => {
     const model = await req.Model.findById(req.params.id)
+    
     res.send(model)
   })
 

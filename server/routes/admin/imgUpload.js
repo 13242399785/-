@@ -20,7 +20,7 @@ module.exports = (app, multer) => {
   //     }
   // })
   })
-  let BaseUrl='http://192.168.5.147:3333'
+  let BaseUrl='https://huazai.loca.lt'
   router.post('/item', item.single('file'), async (req, res) => {
     const file = req.file
     file.url = `${BaseUrl}/uploads/items/${file.filename}`

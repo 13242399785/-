@@ -28,7 +28,7 @@
         <i class="card-icon-l" slot="icon-l"></i>
         <i class="card-icon-r" slot="icon-r"></i>
         <template slot-scope="scope">
-          <a class="fs14 d-flex mb15" v-for="item in scope.item.news_list" :href="item.url" :key="item._id"
+          <a class="fs14 d-flex mb15" v-for="item in scope.item.news_list" href="#" :key="item._id"
             @click="newsClick(item._id)">
             <span class="cate_name">[{{item.cate_name}}]</span>
             <span style="margin: 0 0.04rem">|</span>

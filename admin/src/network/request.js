@@ -5,6 +5,13 @@ import router from '../router/index'
 import NProgress from 'nprogress'
 // var nowUrl='https://huazai.loca.lt'
 var nowUrl='https://huazai.loca.lt'
+if(process.env.NODE_ENV === 'production') {
+  axios.get('./url.txt').then(function(res){
+    nowUrl=res.data;//后台api地址
+  }).catch((error) => {
+    console.error(error);
+  });
+}
 //通用增删改查接口(增加rest字段)
 function GUID_req(config) {
 
@@ -53,7 +60,7 @@ function upload(config) {
   const instance = axios.create({
     // baseURL: 'http://localhost:3333/admin/api/upload',
     baseURL: process.env.VUE_APP_API_URL_UPLOAD ||nowUrl+ '/admin/api/upload',
-    timeout: 5000
+    timeout: 60000
   })
 
   instance.interceptors.request.use(config => {
@@ -88,7 +95,7 @@ function login(config) {
   const instance = axios.create({
     // baseURL: 'http://localhost:3333/admin/api',
     baseURL: process.env.VUE_APP_API_URL_LOGIN || nowUrl+'/admin/api',
-    timeout: 5000
+    timeout: 50000
   })
 
   instance.interceptors.request.use(config => {

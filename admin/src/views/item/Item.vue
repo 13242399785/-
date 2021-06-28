@@ -84,7 +84,7 @@
  
 <script>
 //导入网络请求函数
-import axios from 'axios'
+// import axios from 'axios'
 
 import { getItemList, createItem, getItem, updateItem, deleteItem } from 'network/admin/item'
 

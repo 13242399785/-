@@ -295,7 +295,7 @@
           photo: '',
           scores: {},
           shipin: {},
-         
+          skins:[],
           skills: [],
           downWind: {},
           upWind: {},
@@ -389,15 +389,17 @@
         this.model.restraint.splice(i, 1)
       },
        beforeUpload(file) {
-        const isMP4 = file.type === 'pm4';
+        const isMP4 = file.type === 'video/mp4';
         const isLt100M = file.size / 1024 / 1024 < 100;
         if (!isMP4) {
           this.$message.error('上传视频只能是 MP4 格式!');
+          return false
         }
         if (!isLt100M) {
           this.$message.error('上传视频大小不能超过 100MB!');
+          return false
         }
-        return isJPG && isLt2M;
+        return isMP4
       },
     },
     created() {

@@ -84,6 +84,11 @@ const routes = [{
       {
         path: 'catalog',
         component: () => import('../views/menu/menu.vue')
+      },
+      //目录管理
+      {
+        path: 'detail',
+        component: () => import('../views/detail/detail.vue')
       }
     ]
   }

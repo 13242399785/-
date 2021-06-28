@@ -38,13 +38,14 @@
         </el-form-item>
       </el-form>
     </el-card>
+    <div id="login_container" style="width: 500px;height: 500px;"></div>
   </div>
 </template>
  
 <script>
 //导入网络请求
 import { loginReq } from 'network/admin/login'
-
+import axios from 'axios'
 export default {
   name: 'Login',
   data() {
@@ -92,6 +93,20 @@ export default {
         ],
       }
     }
+  },
+  mounted() {
+    var obj = new WxLogin({
+        id:"login_container",
+        appid: "wx5bfed9d166a33c85",
+        scope: "snsapi_login",
+        redirect_uri: "huazai.loca.lt",
+        state: "",
+        style: "",//这个是二维码样式
+        href: ""
+    });
+    // axios.post({},function(){
+
+    // })
   },
   methods: {
     //点击按钮,重置表单
